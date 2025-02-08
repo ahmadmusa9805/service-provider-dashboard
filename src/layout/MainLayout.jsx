@@ -9,13 +9,10 @@ const MainLayout = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-
-      {/* Main Content */}
-      <div className="flex flex-col flex-1">
-        <MainHeader toggleSidebar={toggleSidebar} />
+    <div className="h-screen">
+      <MainHeader toggleSidebar={toggleSidebar} />
+      <div className="flex flex-1">
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <main className="p-4 overflow-y-auto bg-bg h-[100vh]">
           <Outlet />
         </main>

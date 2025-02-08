@@ -4,6 +4,16 @@ import ForgetPassword from "../pages/auth/ForgetPassword";
 import VerificationCode from "../pages/auth/VerificationCode";
 import ResetPassword from "../pages/auth/ResetPassword";
 import MainLayout from "../layout/MainLayout";
+import DashboardPage from "../pages/dashboard/DashboardPage";
+import ProfilePage from "../pages/profilePage/ProfilePage";
+import AboutUs from "../pages/settings/AboutUs";
+import Settings from "../pages/settings/Settings";
+import PrivacyPolicy from "../pages/settings/PrivacyPolicy";
+import TermsCondition from "../pages/settings/TermsCondition";
+import FAQ from "../pages/settings/FAQ";
+import UserDetails from "../pages/userDetails/UserDetails";
+import Services from "../pages/services/Services";
+import Chat from "../pages/chat/Chat";
 
 const router = createBrowserRouter([
   {
@@ -33,38 +43,16 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/request-management",
-        element: <ManagementPage />,
+        path: "/chat",
+        element: <Chat />,
       },
       {
-        path: "/invoice",
-        element: <InvoicePage />,
+        path: "/services",
+        element: <Services />,
       },
-      {
-        path: "/add-service",
-        element: <AddServicePage />,
-      },
-      {
-        path: "/make-admin",
-        element: <MakeAdminPage />,
-      },
-
-      // user management
       {
         path: "/user-management",
-        element: <UserManagementPage />,
-      },
-      {
-        path: "/technician",
-        element: <Technician />,
-      },
-      {
-        path: "/admin-client",
-        element: <AdminClient />,
-      },
-      {
-        path: "/client-supervisor",
-        element: <ClientSupervisor />,
+        element: <UserDetails />,
       },
 
       // settings
@@ -73,23 +61,27 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
+        path: "/faq",
+        element: <FAQ />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
         path: "/privacy-policy",
-        element: <Policy />,
+        element: <PrivacyPolicy />,
       },
       {
         path: "/terms-and-condition",
-        element: <TermsConditionPage />,
+        element: <TermsCondition />,
       },
 
-      // header nav
+      //  navbar profile
 
       {
         path: "/profile",
         element: <ProfilePage />,
-      },
-      {
-        path: "/notification",
-        element: <NotificationPage />,
       },
     ],
   },
