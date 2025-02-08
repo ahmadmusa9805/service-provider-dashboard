@@ -5,7 +5,7 @@ const MainHeader = () => {
         <div className="flex justify-between items-center px-[100px] h-[80px]">
           <img
             src="/iBadi.png"
-            className="w-[69px] h-[32px]"
+            className="w-[50px] h-[25px]"
             alt="User Avatar"
           />
 

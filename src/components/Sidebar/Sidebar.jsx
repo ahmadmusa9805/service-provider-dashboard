@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       {/* Close Button (Mobile Only) */}
       <button
         onClick={toggleSidebar}
-        className="absolute top-4 right-4 lg:hidden text-white bg-secondary focus:outline-none p-2 rounded-full"
+        className="absolute top-4 right-4 lg:hidden text-white bg-[#0D0D0D] focus:outline-none p-2 rounded-full"
       >
         <IoCloseSharp />
       </button>

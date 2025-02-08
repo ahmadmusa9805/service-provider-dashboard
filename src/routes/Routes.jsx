@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <SignInPage />,
   },
   {
-    path: "/forgate-password",
+    path: "/forget-password",
     element: <ForgetPassword />,
   },
   {

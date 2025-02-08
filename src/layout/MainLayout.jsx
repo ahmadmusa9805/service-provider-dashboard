@@ -11,9 +11,9 @@ const MainLayout = () => {
   return (
     <div className="h-screen">
       <MainHeader toggleSidebar={toggleSidebar} />
-      <div className="flex flex-1">
+      <div className="flex">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <main className="p-4 overflow-y-auto bg-white h-[100vh]">
+        <main className="p-5 overflow-y-auto bg-white h-[100vh]">
           <Outlet />
         </main>
       </div>
