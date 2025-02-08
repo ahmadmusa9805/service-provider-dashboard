@@ -13,7 +13,7 @@ const MainLayout = () => {
       <MainHeader toggleSidebar={toggleSidebar} />
       <div className="flex flex-1">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <main className="p-4 overflow-y-auto bg-bg h-[100vh]">
+        <main className="p-4 overflow-y-auto bg-white h-[100vh]">
           <Outlet />
         </main>
       </div>

@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         element: <Services />,
       },
       {
-        path: "/user-management",
+        path: "/user-details",
         element: <UserDetails />,
       },
 
@@ -61,26 +61,26 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: "/faq",
+        path: "/setting/faq",
         element: <FAQ />,
       },
       {
-        path: "/about-us",
+        path: "/setting/about-us",
         element: <AboutUs />,
       },
       {
-        path: "/privacy-policy",
+        path: "/setting/privacy-policy",
         element: <PrivacyPolicy />,
       },
       {
-        path: "/terms-and-condition",
+        path: "/setting/terms-and-condition",
         element: <TermsCondition />,
       },
 
       //  navbar profile
 
       {
-        path: "/profile",
+        path: "/setting/profile",
         element: <ProfilePage />,
       },
     ],

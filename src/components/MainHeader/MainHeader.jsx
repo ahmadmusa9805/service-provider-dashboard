@@ -15,7 +15,7 @@ const MainHeader = () => {
               className="w-8 md:w-12 h-8 md:h-12 object-cover rounded-full"
               alt="User Avatar"
             />
-            <h3 className="hidden md:block text-white font-semibold">
+            <h3 className="hidden md:block text-white text-lg font-semibold">
               Mr. Admin
             </h3>
           </div>
@@ -26,3 +26,4 @@ const MainHeader = () => {
 };
 
 export default MainHeader;
+
