@@ -1,5 +1,6 @@
 import { ConfigProvider, Table } from "antd";
 import { useState } from "react";
+import { IoSearch } from "react-icons/io5";
 import { MdArrowOutward } from "react-icons/md";
 
 const dataSource = [
@@ -138,75 +139,94 @@ const columns = [
 ];
 
 function UserDetails() {
-    const [toggle, setToggle] = useState(false);
-  
-  return  <div>
-        <div>
-          <div className="flex gap-2">
-            <div className="flex items-center gap-[10px]">
+  const [toggle, setToggle] = useState(false);
+
+  return (
+    <div>
+      <div className="my-10 flex justify-between items-center">
+        <div className="flex gap-4">
+          <div className="flex items-center gap-[10px]">
+            <div
+              className={` w-[25px] h-[25px] border border-[#00C0B5]  rounded-full flex items-center justify-center cursor-pointer `}
+              onClick={() => setToggle(!toggle)}
+            >
               <div
-                className={` w-[35px] h-[35px] border border-[#3B9DF8]  rounded-full flex items-center justify-center cursor-pointer `}
-                onClick={() => setToggle(!toggle)}
-              >
-                <div
-                  className={`${
-                    toggle
-                      ? "bg-[#3B9DF8] scale-[1]"
-                      : "bg-transparent scale-[0.7]"
-                  } w-[21px] h-[21px] transition-all duration-200 rounded-full `}
-                ></div>
-              </div>
-              <p
-                className="text-[1.2rem] font-bold text-text cursor-pointer"
-                onClick={() => setToggle(!toggle)}
-              >
-                All User
-              </p>
+                className={`${
+                  toggle
+                    ? "bg-[#00C0B5] scale-[1]"
+                    : "bg-transparent scale-[0.7]"
+                } w-[25px] h-[25px] transition-all duration-200 rounded-full `}
+              ></div>
             </div>
-            <div className="flex items-center gap-[10px]">
+            <p
+              className="text-[1.2rem] font-bold text-text cursor-pointer"
+              onClick={() => setToggle(!toggle)}
+            >
+              All User
+            </p>
+          </div>
+          <div className="flex items-center gap-[10px]">
+            <div
+              className={` w-[25px] h-[25px] border border-[#00C0B5]  rounded-full flex items-center justify-center cursor-pointer `}
+              onClick={() => setToggle(!toggle)}
+            >
               <div
-                className={` w-[35px] h-[35px] border border-[#3B9DF8]  rounded-full flex items-center justify-center cursor-pointer `}
-                onClick={() => setToggle(!toggle)}
-              >
-                <div
-                  className={`${
-                    toggle
-                      ? "bg-[#3B9DF8] scale-[1]"
-                      : "bg-transparent scale-[0.7]"
-                  } w-[21px] h-[21px] transition-all duration-200 rounded-full `}
-                ></div>
-              </div>
-              <p
-                className="text-[1.2rem] font-bold text-text cursor-pointer"
-                onClick={() => setToggle(!toggle)}
-              >
-                Service Provider
-              </p>
+                className={`${
+                  toggle
+                    ? "bg-[#00C0B5] scale-[1]"
+                    : "bg-transparent scale-[0.7]"
+                } w-[25px] h-[25px] transition-all duration-200 rounded-full `}
+              ></div>
             </div>
+            <p
+              className="text-[1.2rem] font-bold text-text cursor-pointer"
+              onClick={() => setToggle(!toggle)}
+            >
+              Service Provider
+            </p>
           </div>
         </div>
-        <ConfigProvider
-          theme={{
-            components: {
-              InputNumber: {
-                activeBorderColor: "rgb(19,194,194)",
-              },
-              Pagination: {
-                colorPrimaryBorder: "rgb(19,194,194)",
-                colorBorder: "rgb(19,194,194)",
-              },
-              Table: {
-                headerBg: "rgb(19,194,194)",
-                headerColor: "rgb(255,255,255)",
-                cellFontSize: 20,
-                headerSplitColor: "rgb(19,194,194)",
-              },
-            },
-          }}
-        >
-          <Table dataSource={dataSource} columns={columns} pagination={false} />
-        </ConfigProvider>
+        <div className="relative w-full sm:w-[300px]">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="border border-[#e5eaf2] py-3 pl-12 pr-[65px] outline-none w-full rounded-md"
+          />
+          <span className=" text-gray-500 absolute top-0 left-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer">
+            <IoSearch className="text-[1.3rem]" />
+          </span>
+        </div>
       </div>
+      <ConfigProvider
+        theme={{
+          components: {
+            InputNumber: {
+              activeBorderColor: "rgb(19,194,194)",
+            },
+            Pagination: {
+              colorPrimaryBorder: "rgb(19,194,194)",
+              colorBorder: "rgb(19,194,194)",
+              colorPrimaryHover: "rgb(19,194,194)",
+              colorBgTextActive: "rgb(19,194,194)",
+              colorTextDisabled: "rgb(19,194,194)",
+              colorTextPlaceholder: "rgb(19,194,194)",
+              itemActiveBgDisabled: "rgb(255,255,255)",
+              colorPrimary: "rgb(19,194,194)",
+            },
+            Table: {
+              headerBg: "rgb(19,194,194)",
+              headerColor: "rgb(255,255,255)",
+              cellFontSize: 20,
+              headerSplitColor: "rgb(19,194,194)",
+            },
+          },
+        }}
+      >
+        <Table dataSource={dataSource} columns={columns}  pagination={{ pageSize: 5 }}
+       />
+      </ConfigProvider>
+    </div>
+  );
 }
 
 export default UserDetails;

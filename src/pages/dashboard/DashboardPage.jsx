@@ -17,7 +17,7 @@ function DashboardPage() {
   };
   return (
     <div className="p-5 flex flex-col">
-      <div className="grid grid-cols-1 md:grid-cols-2 mmd:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 mmd:grid-cols-2 lg:grid-cols-3 gap-5">
         {/* Total User */}
         <div className="flex  justify-between items-center p-4 bg-[#E6FAF9] rounded-md gap-5 h-auto md:h-28">
           <div className="flex gap-3 items-center">

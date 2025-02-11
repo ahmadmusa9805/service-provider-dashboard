@@ -7,6 +7,7 @@ import { RxDashboard } from "react-icons/rx";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import { GoQuestion } from "react-icons/go";
 import { SlArrowDown } from "react-icons/sl";
+import { TbBrandWechat } from "react-icons/tb";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
@@ -74,6 +75,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <IoBagAddOutline className="w-8 h-8 text-xl font-semibold" />
           <Link className="text-xl font-semibold" to="/services">
             Add Service
+          </Link>
+        </li>
+        {/* Chat */}
+        <li
+          className={`flex items-center gap-4 mt-8 ${
+            isActive("/chat")
+              ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
+              : ""
+          }`}
+        >
+          <TbBrandWechat className="w-8 h-8 text-xl font-semibold" />
+          <Link className="text-xl font-semibold" to="/chat">
+            Chat
           </Link>
         </li>
 

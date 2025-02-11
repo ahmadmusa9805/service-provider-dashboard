@@ -46,7 +46,7 @@ const dataSource = [
     phone: "+880 1340560614",
     email: "mrraju@gmail.com",
     location: "Banasree, Dhaka, Bangladesh",
-  }
+  },
 ];
 
 const columns = [
@@ -99,10 +99,6 @@ const RecentUsers = () => {
           components: {
             InputNumber: {
               activeBorderColor: "rgb(19,194,194)",
-            },
-            Pagination: {
-              colorPrimaryBorder: "rgb(19,194,194)",
-              colorBorder: "rgb(19,194,194)",
             },
             Table: {
               headerBg: "rgb(19,194,194)",

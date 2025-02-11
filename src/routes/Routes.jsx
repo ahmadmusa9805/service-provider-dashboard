@@ -80,7 +80,7 @@ const router = createBrowserRouter([
       //  navbar profile
 
       {
-        path: "/setting/profile",
+        path: "/profile",
         element: <ProfilePage />,
       },
     ],
