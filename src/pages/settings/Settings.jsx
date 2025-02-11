@@ -1,7 +1,11 @@
+import AboutUs from "./AboutUs";
+
 function Settings() {
-    return (
-        <h1>Settings</h1>
-    )
+  return (
+    <div>
+      <AboutUs />
+    </div>
+  );
 }
 
-export default Settings
+export default Settings;

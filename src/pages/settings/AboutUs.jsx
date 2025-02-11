@@ -3,33 +3,26 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 function AboutUs() {
-  const [value, setValue] = useState(
+  const [content, setContent] = useState(
     "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum."
   );
 
   return (
-    <div className="px-5 pb-5">
-      <h3 className="text-center font-semibold pb-5 text-xl text-[#242424]">About Us</h3>
+    <div className="p-5">
+      <h1 className="text-start text-3xl font-bold mb-5">About Us</h1>
 
       <div className=" bg-white rounded shadow p-5 h-full">
         <ReactQuill
+          style={{ padding: "10px" }}
           theme="snow"
-          value={value}
-          onChange={setValue}
-          className="bg-white h-full"
-          modules={{
-            toolbar: [
-              ["bold", "italic", "underline"],
-              [{ list: "ordered" }, { list: "bullet" }],
-              ["link", "image"],
-            ],
-          }}
+          value={content}
+          onChange={setContent}
         />
       </div>
-      <div className="text-center py-6">
+      <div className="text-center py-5">
         <button
-          onClick={() => console.log(value)}
-          className="bg-[#00c0b5] text-white font-semibold px-6 py-2 rounded transition duration-200"
+          onClick={() => console.log(content)}
+          className="bg-[#00c0b5] text-white font-semibold w-full py-2 rounded transition duration-200"
         >
           Save changes
         </button>

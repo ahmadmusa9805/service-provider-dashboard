@@ -20,9 +20,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed lg:static bg-white text-[#0D0D0D] w-[280px] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
+      className={`fixed lg:static bg-white text-[#0D0D0D] w-[20%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:translate-x-0`}
+      // className="w-[20%]"
     >
       {/* Close Button (Mobile Only) */}
       <button
