@@ -16,10 +16,10 @@ function DashboardPage() {
     setselectedMonth(dateString.split("-")[1]);
   };
   return (
-    <div className="p-5 flex flex-col">
+    <div className="flex flex-col">
       <div className="grid grid-cols-1 md:grid-cols-2 mmd:grid-cols-2 lg:grid-cols-3 gap-5">
         {/* Total User */}
-        <div className="flex  justify-between items-center p-4 bg-[#E6FAF9] rounded-md gap-5 h-auto md:h-28">
+        <div className="flex  justify-between items-center p-5 bg-[#E6FAF9] rounded-md gap-5 h-30">
           <div className="flex gap-3 items-center">
             <p className="rounded-full flex justify-center items-center">
               <FaUsers
@@ -32,7 +32,7 @@ function DashboardPage() {
           <p className="text-[#00c0b5] text-3xl font-bold mr-10">1200</p>
         </div>
         {/*  Total Service Provider */}
-        <div className="flex  justify-between items-center p-4 bg-[#E6FAF9] rounded-md gap-5 h-auto md:h-28">
+        <div className="flex  justify-between items-center p-5 bg-[#E6FAF9] rounded-md gap-5 h-30">
           <div className="flex gap-3 items-center">
             <p className="rounded-full flex justify-center items-center">
               <GrServices
@@ -47,7 +47,7 @@ function DashboardPage() {
           <p className="text-[#00c0b5] text-3xl font-bold mr-10">100</p>
         </div>
         {/* Total Earning */}
-        <div className="flex  justify-between items-center p-4 bg-[#E6FAF9] rounded-md gap-5 h-auto md:h-28">
+        <div className="flex  justify-between items-center p-5 bg-[#E6FAF9] rounded-md gap-5 h-30">
           <div className="flex gap-3 items-center">
             <p className="rounded-full flex justify-center items-center">
               <AiOutlineFundProjectionScreen

@@ -21,10 +21,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed lg:static bg-white text-[#0D0D0D] w-[20%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
+      className={`fixed lg:static bg-white text-[#0D0D0D] w-[50%] md:w-[20%] lg:w-[20%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
+        isOpen ? "translate-x-0 top-0 left-0 " : "-translate-x-full"
       } lg:translate-x-0`}
-      // className="w-[20%]"
     >
       {/* Close Button (Mobile Only) */}
       <button
@@ -35,7 +34,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       </button>
 
       {/* Sidebar Menu */}
-      <ul className="mt-10 px-5">
+      <ul className="mt-10 px-5 mr-10">
         {/* Dashboard */}
         <li
           className={`flex items-center gap-4 cursor-pointer ${
@@ -175,7 +174,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       </ul>
 
       {/* Logout Button */}
-      <div className="absolute mt-8 md:mt-20 lg:mt-20 xl:mt-20 w-full px-4">
+      <div className="absolute mt-5 md:mt-20 lg:mt-20 xl:mt-20 w-full px-4">
         <Link to="/sign-in">
           <button className="flex items-center gap-4 w-full py-3 rounded-lg">
             <IoLogInOutline className="w-8 h-8 text-xl font-semibold" />

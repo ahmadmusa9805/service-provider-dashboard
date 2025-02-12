@@ -151,8 +151,8 @@ function UserDetails() {
 
   return (
     <div>
-      <div className="my-10 flex justify-between items-center">
-        <div className="flex gap-4">
+      <div className="my-5 md:my-10 md:flex lg:flex flex-col justify-between items-center">
+        <div className="flex gap-5">
           <div className="flex items-center gap-[10px]">
             <div
               className={` w-[25px] h-[25px] border border-[#00C0B5]  rounded-full flex items-center justify-center cursor-pointer `}
@@ -194,7 +194,7 @@ function UserDetails() {
             </p>
           </div>
         </div>
-        <div className="relative w-full sm:w-[300px]">
+        <div className="relative w-full sm:w-[300px] mt-5 md:mt-0 lg:mt-0">
           <input
             type="text"
             placeholder="Search..."
@@ -234,6 +234,7 @@ function UserDetails() {
           dataSource={dataSource}
           columns={columns}
           pagination={{ pageSize: 5 }}
+          scroll={{ x: "max-content" }}
         />
         <Modal
           open={isModalOpen}

@@ -200,6 +200,7 @@ function Services() {
           dataSource={dataSource}
           columns={columns}
           pagination={{ pageSize: 5 }}
+          scroll={{ x: "max-content" }}
         />
         <Modal
           open={isModalOpen}

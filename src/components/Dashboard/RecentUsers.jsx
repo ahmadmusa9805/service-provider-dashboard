@@ -4,15 +4,9 @@ import { MdArrowOutward } from "react-icons/md";
 
 const RecentUsers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  const showModal = () => setIsModalOpen(true);
+  const handleCancel = () => setIsModalOpen(false);
+
   const dataSource = [
     {
       key: "1",
@@ -62,45 +56,18 @@ const RecentUsers = () => {
   ];
 
   const columns = [
-    {
-      title: "No",
-      dataIndex: "no",
-      key: "no",
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-    },
-    {
-      title: "Phone Number",
-      dataIndex: "phone",
-      key: "phone",
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Location",
-      dataIndex: "location",
-      key: "location",
-    },
+    { title: "No", dataIndex: "no", key: "no" },
+    { title: "Name", dataIndex: "name", key: "name" },
+    { title: "Date", dataIndex: "date", key: "date" },
+    { title: "Phone Number", dataIndex: "phone", key: "phone" },
+    { title: "Email", dataIndex: "email", key: "email" },
+    { title: "Location", dataIndex: "location", key: "location" },
     {
       title: "Action",
       key: "action",
       render: () => (
-        <button>
-          <MdArrowOutward
-            onClick={showModal}
-            className="text-[#4289FF] w-10 h-10"
-          />
+        <button onClick={showModal}>
+          <MdArrowOutward className="text-[#4289FF] w-8 h-8" />
         </button>
       ),
     },
@@ -111,19 +78,26 @@ const RecentUsers = () => {
       <ConfigProvider
         theme={{
           components: {
-            InputNumber: {
-              activeBorderColor: "rgb(19,194,194)",
-            },
             Table: {
               headerBg: "rgb(19,194,194)",
               headerColor: "rgb(255,255,255)",
-              cellFontSize: 20,
+              cellFontSize: 16,
               headerSplitColor: "rgb(19,194,194)",
             },
           },
         }}
       >
-        <Table dataSource={dataSource} columns={columns} pagination={false} />
+        {/* Wrap table in an overflow div for X-axis scrolling */}
+        <div className="overflow-x-auto">
+          <Table
+            dataSource={dataSource}
+            columns={columns}
+            pagination={{ pageSize: 5 }}
+            scroll={{ x: "max-content" }}
+          />
+        </div>
+
+        {/* Modal */}
         <Modal
           open={isModalOpen}
           centered
@@ -132,12 +106,12 @@ const RecentUsers = () => {
         >
           <div className="flex flex-col justify-center items-center p-5">
             <h1 className="text-xl text-center text-[#00C0B5]">
-              Are you sure !
+              Are you sure?
             </h1>
-            <p>Do you want to Block your Users profile ?</p>
-            <div className="text-center py-5">
+            <p>Do you want to block this user profile?</p>
+            <div className="text-center py-5 w-full">
               <button
-                onClick={handleOk}
+                onClick={() => setIsModalOpen(false)}
                 className="bg-[#00c0b5] text-white font-semibold w-full py-2 px-5 rounded transition duration-200"
               >
                 CONFIRM

@@ -33,7 +33,7 @@ const MainHeader = ({ toggleSidebar }) => {
             </div>
             <button
               onClick={toggleSidebar}
-              className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className="md:hidden p-2 rounded focus:outline-none"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

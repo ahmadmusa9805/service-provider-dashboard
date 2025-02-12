@@ -1,6 +1,36 @@
+// <div className="p-5">
+//   <h1 className="text-[#0D0D0D] text-start text-3xl font-bold">
+//     Messages
+//   </h1>
+//   {/* Tab Navigation Section */}
+//   <div className="flex justify-start items-center gap-5 text-md md:text-xl font-semibold my-5">
+//     <p
+//       onClick={() => setActiveTab("User")}
+//       className={`cursor-pointer pb-1 ${
+//         activeTab === "User"
+//           ? "text-[#00C0B5] border-b-4 border-[#00C0B5] font-bold"
+//           : "text-[#575757] font-bold"
+//       }`}
+//     >
+//       Edit Profile
+//     </p>
+//     <p
+//       onClick={() => setActiveTab("Professional")}
+//       className={`cursor-pointer pb-1 ${
+//         activeTab === "Professional"
+//           ? "text-[#00C0B5] border-b-4 border-[#00C0B5] font-bold"
+//           : "text-[#575757] font-bold"
+//       }`}
+//     >
+//       Change Password
+//     </p>
+//   </div>
+// </div>
+
 import { useState } from "react";
 import { AiOutlineSearch, AiOutlinePaperClip } from "react-icons/ai";
 import { RiSendPlane2Fill } from "react-icons/ri";
+import { FiMenu } from "react-icons/fi";
 
 const users = [
   {
@@ -56,6 +86,7 @@ const users = [
 
 const Chat = () => {
   const [selectedUser, setSelectedUser] = useState(users[0]);
+  const [activeTab, setActiveTab] = useState("User");
   const [messages, setMessages] = useState([
     {
       text: "Don't worry, the pain will pass soon",
@@ -77,7 +108,7 @@ const Chat = () => {
     { text: "Thank you Dr.", sender: "them", time: "20-Apr-2024" },
   ]);
   const [newMessage, setNewMessage] = useState("");
-  const [activeTab, setActiveTab] = useState("User");
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const sendMessage = () => {
     if (newMessage.trim()) {
@@ -90,7 +121,7 @@ const Chat = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col h-screen bg-white ">
       <div className="p-5">
         <h1 className="text-[#0D0D0D] text-start text-3xl font-bold">
           Messages
@@ -105,7 +136,7 @@ const Chat = () => {
                 : "text-[#575757] font-bold"
             }`}
           >
-            Edit Profile
+            User{" "}
           </p>
           <p
             onClick={() => setActiveTab("Professional")}
@@ -115,14 +146,33 @@ const Chat = () => {
                 : "text-[#575757] font-bold"
             }`}
           >
-            Change Password
+            Professional
           </p>
         </div>
       </div>
 
-      <div className="flex h-screen bg-white">
-        {/* Left Sidebar */}
-        <div className="w-[500px] flex flex-col p-5">
+      {/* Header for Mobile */}
+      <div className="flex items-center justify-between p-5 bg-[#00c0b5] text-white md:hidden">
+        <FiMenu
+          className="text-2xl cursor-pointer"
+          onClick={() => setShowSidebar(!showSidebar)}
+        />
+        <h1 className="text-xl font-bold">Messages</h1>
+      </div>
+
+      <div className="flex flex-1">
+        {/* Sidebar - User List */}
+        <div
+          className={`absolute md:relative top-0 left-0 w-64 md:w-96 h-full bg-white md:flex flex-col p-4 transition-all duration-300 z-50 mb-10 ${
+            showSidebar ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          }`}
+        >
+          <button
+            className="md:hidden self-end mb-4 text-gray-500"
+            onClick={() => setShowSidebar(false)}
+          >
+            ✖
+          </button>
           <div className="relative mb-5">
             <AiOutlineSearch
               className="absolute left-3 top-4 text-[#4F4F59] w-6 h-6"
@@ -133,32 +183,30 @@ const Chat = () => {
               className="w-full pl-10 py-4 bg-[#F2F2F2] focus:outline-none"
             />
           </div>
-          <div className="flex-1 overflow-auto space-y-2">
+          <div className="overflow-y-auto space-y-2 flex-1">
             {users.map((user) => (
               <div
                 key={user.id}
-                className="flex items-center gap-3 p-5 cursor-pointer relative bg-white shadow-lg rounded-2xl"
+                className="flex items-center gap-3 p-4 cursor-pointer bg-gray-100 rounded-md"
                 onClick={() => setSelectedUser(user)}
               >
                 <img
                   src={user.avatar}
                   alt={user.name}
-                  className="h-20 w-20 rounded-full object-cover"
+                  className="h-12 w-12 rounded-full object-cover"
                 />
-                <div className="flex-1 flex flex-col">
-                  <h3 className="text-xl font-medium">{user.name}</h3>
+                <div className="flex-1">
+                  <h3 className="text-lg font-medium">{user.name}</h3>
                 </div>
-                <p className="text-xs text-[#4F4F59] absolute bottom-1 right-2">
-                  {user.time}
-                </p>
+                <p className="text-xs text-gray-500">{user.time}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Main Chat Area */}
-        <div className="flex-1 flex flex-col mb-10 border-l-[10px] border-white">
-          <div className="px-5 py-2 bg-[#00C0B5] text-white flex items-center gap-3 rounded-lg">
+        <div className="flex-1 flex flex-col mb-10 md:border-l-[10px] md:border-white">
+          <div className="px-5 py-2 bg-[#00C0B5] text-white flex items-center gap-3 md:rounded-lg">
             <img
               src="https://avatar.iran.liara.run/public/28"
               alt={selectedUser.name}
@@ -204,7 +252,7 @@ const Chat = () => {
         </div>
 
         {/* Right Sidebar */}
-        <div className="border-l-[10px] border-white mb-10">
+        <div className="hidden lg:flex flex-col border-l-[10px] border-white mb-10">
           <div className="w-[350px]   p-2 bg-[#E6FAF9] rounded-lg h-full">
             <h3 className="text-xl text-[#4F4F59] font-medium mb-2 mt-5">
               Media(1)
@@ -226,7 +274,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -96,7 +96,7 @@ const FAQ = () => {
                 />
 
                 <button className="" onClick={showModal}>
-                  <RiDeleteBin6Line className="text-[#00c0b5] text-2xl cursor-pointer hover:text-red-500 transition-all" />
+                  <RiDeleteBin6Line className="text-2xl cursor-pointer text-red-500 transition-all" />
                 </button>
               </div>
             </div>
@@ -151,47 +151,48 @@ const FAQ = () => {
           },
         }}
       >
-        <Modal
-          open={addModalOpen}
-          centered
-          onCancel={handleCancel2}
-          footer={null}
-          title="Add FAQ"
-        >
-          <div className="p-5">
-            <div className="flex justify-between items-center gap-5">
-              <div>
-                <label className="text-[#0D0D0D] text-[0.9rem] mb-3">
-                  Question
-                </label>
-                <input
-                  type="text"
-                  className="border-2 border-[#e5eaf2] p-2 w-full rounded transition duration-200 mt-3"
-                  placeholder="Enter your question"
-                />
-              </div>
-              <div>
-                <label className="text-[#0D0D0D] text-[0.9rem] mb-3">
-                  Answer
-                </label>
-                <input
-                  type="text"
-                  className="border-2 border-[#e5eaf2] p-2 w-full rounded transition duration-200 mt-3"
-                  placeholder="Enter your answer"
-                />
-              </div>
-            </div>
 
-            <div className="text-center py-5">
-              <button
-                onClick={handleOk2}
-                className="bg-[#00c0b5] text-white font-semibold w-1/3 py-2 px-5 rounded transition duration-200"
-              >
-                CONFIRM
-              </button>
+      <Modal
+        open={addModalOpen}
+        centered
+        onCancel={handleCancel2}
+        footer={null}
+        title="Add FAQ"
+      >
+        <div className="p-5">
+          <div className="flex justify-between items-center gap-5">
+            <div>
+              <label className="text-[#0D0D0D] text-[0.9rem] mb-3">
+                Question
+              </label>
+              <input
+                type="text"
+                className="border-2 border-[#e5eaf2] p-2 w-full rounded transition duration-200 mt-3"
+                placeholder="Enter your question"
+              />
+            </div>
+            <div>
+              <label className="text-[#0D0D0D] text-[0.9rem] mb-3">
+                Answer
+              </label>
+              <input
+                type="text"
+                className="border-2 border-[#e5eaf2] p-2 w-full rounded transition duration-200 mt-3"
+                placeholder="Enter your answer"
+              />
             </div>
           </div>
-        </Modal>
+
+          <div className="text-center py-5">
+            <button
+              onClick={handleOk2}
+              className="bg-[#00c0b5] text-white font-semibold w-1/3 py-2 px-5 rounded transition duration-200"
+            >
+              CONFIRM
+            </button>
+          </div>
+        </div>
+      </Modal>
       </ConfigProvider>
     </div>
   );
