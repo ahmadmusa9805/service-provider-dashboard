@@ -77,6 +77,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             Add Service
           </Link>
         </li>
+        {/* Add Roles */}
+        <li
+          className={`flex items-center gap-4 mt-8 ${
+            isActive("/roles")
+              ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
+              : ""
+          }`}
+        >
+          <IoBagAddOutline className="w-8 h-8 text-xl font-semibold" />
+          <Link className="text-xl font-semibold" to="/roles">
+            Add Role
+          </Link>
+        </li>
         {/* Chat */}
         <li
           className={`flex items-center gap-4 mt-8 ${

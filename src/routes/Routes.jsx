@@ -14,6 +14,7 @@ import FAQ from "../pages/settings/FAQ";
 import UserDetails from "../pages/userDetails/UserDetails";
 import Services from "../pages/services/Services";
 import Chat from "../pages/chat/Chat";
+import Roles from "../pages/role/Role";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
+      },
+      {
+        path: "/roles",
+        element: <Roles />,
       },
       {
         path: "/user-details",
