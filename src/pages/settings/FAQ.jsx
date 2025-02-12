@@ -1,3 +1,4 @@
+import { ConfigProvider, Modal } from "antd";
 import { useState } from "react";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa6";
@@ -5,6 +6,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 const FAQ = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [addModalOpen, setAddModalOpen] = useState(false);
 
   // Accordion data
   const AccordionData = [
@@ -39,14 +42,33 @@ const FAQ = () => {
   const handleClick = (index) => {
     setIsAccordionOpen((prevIndex) => (prevIndex === index ? null : index));
   };
-
-
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const showModal2 = () => {
+    setAddModalOpen(true);
+  };
+  const handleOk2 = () => {
+    setAddModalOpen(false);
+  };
+  const handleCancel2 = () => {
+    setAddModalOpen(false);
+  };
 
   return (
     <div className="relative p-5 z-0 bg-white">
       <div className="flex justify-between items-center">
         <h1 className="text-start text-3xl font-bold mb-5">FAQ</h1>
-        <button className="bg-[#00c0b5] text-white font-semibold px-5 py-2 rounded transition duration-200">
+        <button
+          onClick={showModal2}
+          className="bg-[#00c0b5] text-white font-semibold px-5 py-2 rounded transition duration-200"
+        >
           + Add FAQ
         </button>
       </div>
@@ -72,12 +94,11 @@ const FAQ = () => {
                     "rotate-[180deg] !text-[#00c0b5]"
                   }`}
                 />
-                <RiDeleteBin6Line
-                
-                  className="text-[#00c0b5] text-2xl cursor-pointer hover:text-red-500 transition-all"
-                />
-              </div>
 
+                <button className="" onClick={showModal}>
+                  <RiDeleteBin6Line className="text-[#00c0b5] text-2xl cursor-pointer hover:text-red-500 transition-all" />
+                </button>
+              </div>
             </div>
             <div
               className={`grid transition-all duration-300 overflow-hidden ease-in-out ${
@@ -94,7 +115,84 @@ const FAQ = () => {
         ))}
       </div>
 
-     
+      <Modal open={isModalOpen} centered onCancel={handleCancel} footer={null}>
+        <div className="p-5">
+          <h1 className="text-4xl text-center text-[#0D0D0D]">
+            Are you sure you want to delete ?
+          </h1>
+
+          <div className="text-center py-5">
+            <button
+              onClick={handleOk}
+              className="bg-[#00c0b5] text-white font-semibold w-full py-2 rounded transition duration-200"
+            >
+              YES,DELETE
+            </button>
+          </div>
+          <div className="text-center pb-5">
+            <button
+              onClick={handleOk}
+              className="text-[#00c0b5] border-2 border-[#00c0b5] bg-white font-semibold w-full py-2 rounded transition duration-200"
+            >
+              NO,DON’T DELETE
+            </button>
+          </div>
+        </div>
+      </Modal>
+      <ConfigProvider
+        theme={{
+          components: {
+            InputNumber: {
+              activeBorderColor: "rgb(19,194,194)",
+            },
+            Modal: {
+              titleColor: "rgb(19,194,194)",
+            },
+          },
+        }}
+      >
+        <Modal
+          open={addModalOpen}
+          centered
+          onCancel={handleCancel2}
+          footer={null}
+          title="Add FAQ"
+        >
+          <div className="p-5">
+            <div className="flex justify-between items-center gap-5">
+              <div>
+                <label className="text-[#0D0D0D] text-[0.9rem] mb-3">
+                  Question
+                </label>
+                <input
+                  type="text"
+                  className="border-2 border-[#e5eaf2] p-2 w-full rounded transition duration-200 mt-3"
+                  placeholder="Enter your question"
+                />
+              </div>
+              <div>
+                <label className="text-[#0D0D0D] text-[0.9rem] mb-3">
+                  Answer
+                </label>
+                <input
+                  type="text"
+                  className="border-2 border-[#e5eaf2] p-2 w-full rounded transition duration-200 mt-3"
+                  placeholder="Enter your answer"
+                />
+              </div>
+            </div>
+
+            <div className="text-center py-5">
+              <button
+                onClick={handleOk2}
+                className="bg-[#00c0b5] text-white font-semibold w-1/3 py-2 px-5 rounded transition duration-200"
+              >
+                CONFIRM
+              </button>
+            </div>
+          </div>
+        </Modal>
+      </ConfigProvider>
     </div>
   );
 };
