@@ -158,7 +158,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
             <Link to="/setting/terms-and-condition">
               <li
-                className={`py-[5px] flex gap-2 items-center ${
+                className={`py-[5px] flex gap-2 items-center  ${
                   isActive("/setting/terms-and-condition")
                     ? "text-[#00c0b5]"
                     : ""

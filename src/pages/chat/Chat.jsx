@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { AiOutlineSearch, AiOutlinePaperClip } from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
+import { IoImagesOutline } from "react-icons/io5";
 
 const users = [
   {
@@ -166,10 +167,10 @@ const Chat = () => {
                   alt={user.name}
                   className="h-12 w-12 rounded-full object-cover"
                 />
-                <div className="flex-1">
-                  <h3 className="text-lg font-medium">{user.name}</h3>
+                <div className="flex-1 ">
+                  <h3 className="text-lg font-medium mb-8">{user.name}</h3> 
                 </div>
-                <p className="text-xs text-gray-500">{user.time}</p>
+                <p className="text-xs text-gray-500 mb-8">{user.time}</p>
               </div>
             ))}
           </div>
@@ -183,7 +184,7 @@ const Chat = () => {
               alt={selectedUser.name}
               className="h-20 w-20 rounded-full object-cover"
             />
-            <h2 className="text-xl font-medium">{selectedUser.name}</h2>
+            <h2 className="text-xl font-medium mb-8">{selectedUser.name}</h2>
           </div>
           <div className="flex-1 overflow-auto bg-[#E6FAF9] p-4 space-y-4">
             {messages.map((msg, i) => (
@@ -194,10 +195,10 @@ const Chat = () => {
                 }`}
               >
                 <div className="bg-white rounded-xl p-5 max-w-sm">
-                  <p className="text-2xl text-[#4F4F59]  text-left">
+                  <p className="text-xl text-[#4F4F59]  text-left">
                     {msg.text}
                   </p>
-                  <p className="text-xl text-[#4F4F59]  text-right">
+                  <p className="text-lg text-[#4F4F59]  text-right">
                     {msg.time}
                   </p>
                 </div>
@@ -210,14 +211,15 @@ const Chat = () => {
               placeholder="Type your message"
               className="flex-1 px-2 py-5 border rounded-full focus:outline-none bg-white placeholder:pl-5"
             />
-            <button className="p-1.5 bg-gray-100 absolute right-28 bottom-7 rounded-full">
-              <AiOutlinePaperClip size={20} className="w-8 h-8" />
+            <button className="p-3 bg-gray-100 absolute right-22 bottom-7 rounded-full">
+              <IoImagesOutline  size={20} className="w-5 h-5"  />
+
             </button>
             <button
               onClick={sendMessage}
-              className="p-2 bg-teal-500 hover:bg-teal-600 text-white absolute right-10 bottom-7 rounded-full"
+              className="p-3.5 bg-teal-500 hover:bg-teal-600 text-white absolute right-8 bottom-7 rounded-full"
             >
-              <RiSendPlane2Fill size={20} className="w-8 h-8" />
+              <RiSendPlane2Fill size={20} className="w-5 h-5" />
             </button>
           </div>
         </div>
