@@ -83,13 +83,13 @@ const FAQ = () => {
               className="flex gap-2 cursor-pointer items-center justify-between w-full"
               onClick={() => handleClick(index)}
             >
-              <h2 className="font-bold text-2xl flex gap-2 items-center">
-                <FaRegQuestionCircle />
+              <h2 className="text-base font-normal md:font-bold md:text-2xl flex gap-2 items-center">
+                <FaRegQuestionCircle  className="w-5 h-5 hidden md:flex"/> 
                 {accordion.title}
               </h2>
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-2 md:gap-4 items-center">
                 <FaChevronDown
-                  className={`text-xl text-[#0D0D0D] transition-all duration-300 ${
+                  className={`w-5 h-5 text-[#0D0D0D] transition-all duration-300 ${
                     isAccordionOpen === index &&
                     "rotate-[180deg] !text-[#00c0b5]"
                   }`}
