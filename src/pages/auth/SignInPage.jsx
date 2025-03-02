@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 
 function SignInPage() {
@@ -19,43 +19,52 @@ function SignInPage() {
     <div className="bg-white min-h-screen flex items-center justify-center p-5">
       <div className="container mx-auto">
         <div className="flex  justify-center items-center">
-          <div className="w-full lg:w-1/2 bg-white p-5 md:px-18 md:py-28 shadow-[0px_10px_30px_rgba(0,0,0,0.2)] rounded-2xl">
-            <h2 className="text-[#0D0D0D] text-2xl md:text-3xl font-bold text-center mb-5">
-              Login to Account
+          <div className="w-full lg:w-1/2 bg-white p-5 md:px-18 md:py-28 shadow-[0px_10px_30px_rgba(0,0,0,0.1)] rounded-2xl">
+            <h2 className="text-[#0D0D0D] text-2xl  font-bold text-center mb-5">
+              Log in to your account
             </h2>
-            <p className="text-[#0D0D0D] text-center mb-8">
+            <p className="text-[#6A6D76] text-center mb-10">
               Please enter your email and password to continue.
             </p>
-            <form className="space-y-6">
-              <div>
-                <label className="text-xl text-[#0D0D0D] mb-2">Email</label>
+            <form className="space-y-5">
+              <div className="w-full">
+                <label className="text-xl text-[#0D0D0D] mb-2 font-bold">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
-                  placeholder="demo@example.com"
-                  className="w-full p-2 border-2 border-[#F2F2F2] rounded-md outline-none text-md"
+                  placeholder="enter your gmail"
+                  className="w-full px-5 py-3 border-2 border-[#6A6D76] rounded-md outline-none mt-5 placeholder:text-xl"
                   required
                 />
               </div>
               <div className="w-full">
-                <label className="text-xl text-[#0D0D0D] mb-2">Password</label>
+                <label className="text-xl text-[#0D0D0D] mb-2 font-bold">
+                  Password
+                </label>
                 <div className="w-full relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    placeholder="Demo@123"
-                    className="peer border-[#e5eaf2] border rounded-md outline-none pl-4 pr-12 py-3 w-full mt-1"
+                    placeholder="**********"
+                    className="w-full border-2 border-[#6A6D76] rounded-md outline-none px-5 py-3 mt-5 placeholder:text-xl"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                    className="absolute right-3 bottom-4 flex items-center text-[#6A6D76]"
                   >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    {showPassword ? (
+                      <IoEyeOffOutline className="w-5 h-5" />
+                    ) : (
+                      <IoEyeOutline className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
               </div>
+
               <div className="flex justify-between items-center text-sm my-5">
                 <label className="flex items-center gap-[10px] cursor-pointer">
                   <input
@@ -65,9 +74,9 @@ function SignInPage() {
                   />
                   {isChecked ? (
                     <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
+                      width="21"
+                      height="21"
+                      viewBox="0 0 21 21"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -76,11 +85,11 @@ function SignInPage() {
                           id="Rectangle 331"
                           x="-0.00012207"
                           y="6.10352e-05"
-                          width="20"
-                          height="20"
+                          width="21"
+                          height="21"
                           rx="4"
-                          className="fill-[#00C0B5]"
-                          stroke="#00C0B5"
+                          className="fill-[#00B047]"
+                          stroke="#00B047"
                         ></rect>
                         <path
                           id="Vector"
@@ -93,7 +102,7 @@ function SignInPage() {
                     <svg
                       width="21"
                       height="21"
-                      viewBox="0 0 20 20"
+                      viewBox="0 0 21 21"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -102,17 +111,17 @@ function SignInPage() {
                           id="Rectangle 331"
                           x="-0.00012207"
                           y="6.10352e-05"
-                          width="20"
-                          height="20"
+                          width="21"
+                          height="21"
                           rx="4"
                           className="fill-transparent"
-                          stroke="#00C0B5"
+                          stroke="#00B047"
                         ></rect>
                       </g>
                     </svg>
                   )}
 
-                  <span className="text-[1.2rem] text-[#424242]">
+                  <span className="text-xl text-[#424242]">
                     Remember Password
                   </span>
                 </label>
