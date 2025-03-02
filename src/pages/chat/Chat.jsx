@@ -166,10 +166,10 @@ const Chat = () => {
                   alt={user.name}
                   className="h-12 w-12 rounded-full object-cover"
                 />
-                <div className="flex-1">
-                  <h3 className="text-lg font-medium">{user.name}</h3>
+                <div className="flex-1 ">
+                  <h3 className="text-lg font-medium mb-8">{user.name}</h3> 
                 </div>
-                <p className="text-xs text-gray-500">{user.time}</p>
+                <p className="text-xs text-gray-500 mb-8">{user.time}</p>
               </div>
             ))}
           </div>
@@ -183,7 +183,7 @@ const Chat = () => {
               alt={selectedUser.name}
               className="h-20 w-20 rounded-full object-cover"
             />
-            <h2 className="text-xl font-medium">{selectedUser.name}</h2>
+            <h2 className="text-xl font-medium mb-8">{selectedUser.name}</h2>
           </div>
           <div className="flex-1 overflow-auto bg-[#E6FAF9] p-4 space-y-4">
             {messages.map((msg, i) => (
@@ -194,10 +194,10 @@ const Chat = () => {
                 }`}
               >
                 <div className="bg-white rounded-xl p-5 max-w-sm">
-                  <p className="text-2xl text-[#4F4F59]  text-left">
+                  <p className="text-xl text-[#4F4F59]  text-left">
                     {msg.text}
                   </p>
-                  <p className="text-xl text-[#4F4F59]  text-right">
+                  <p className="text-lg text-[#4F4F59]  text-right">
                     {msg.time}
                   </p>
                 </div>
