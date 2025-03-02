@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed lg:static bg-white text-[#0D0D0D] w-[50%] md:w-[20%] lg:w-[20%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
+      className={`fixed lg:static bg-white text-[#0D0D0D] w-[70%] sm:w-[70%] md:w-[20%] lg:w-[20%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
         isOpen ? "translate-x-0 top-0 left-0 " : "-translate-x-full"
       } lg:translate-x-0`}
     >
@@ -34,141 +34,140 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       </button>
 
       {/* Sidebar Menu */}
-      <ul className="mt-10 px-5 mr-10">
+      <ul className="mt-10 px-5 mr-10 text-base sm-text-lg md:text-xl">
         {/* Dashboard */}
-        <li
-          className={`flex items-center gap-4 cursor-pointer ${
-            isActive("/")
-              ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
-              : ""
-          }`}
-        >
-          <RxDashboard className="w-8 h-8 text-xl font-semibold" />
-          <Link className="text-xl font-semibold" to="/">
-            Dashboard
-          </Link>
-        </li>
+        <Link to="/">
+          <li
+            className={`flex items-center gap-2 md:gap-4 cursor-pointer ${
+              isActive("/")
+                ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl text-lg "
+                : ""
+            }`}
+          >
+            <RxDashboard className="w-5 md:w-8 h-5 md:h-8 text-xl font-semibold" />
+            <p className="text-xl font-semibold">Dashboard</p>
+          </li>
+        </Link>
 
         {/* User Details */}
-        <li
-          className={`flex items-center gap-4 mt-8 cursor-pointer ${
-            isActive("/user-details")
-              ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
-              : ""
-          }`}
-        >
-          <FaRegUser className="w-8 h-8 text-xl font-semibold" />
-          <Link className="text-xl font-semibold" to="/user-details">
-            User Details
-          </Link>
-        </li>
+        <Link to="/user-details">
+          <li
+            className={`flex items-center gap-2 md:gap-4 mt-8 cursor-pointer whitespace-nowrap ${
+              isActive("/user-details")
+                ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
+                : ""
+            }`}
+          >
+            <FaRegUser className="w-5 md:w-8 h-5 md:h-8 text-xl font-semibold" />
+            <p className="text-xl font-semibold">User Details</p>
+          </li>
+        </Link>
 
         {/* Add Service */}
-        <li
-          className={`flex items-center gap-4 mt-8 ${
-            isActive("/services")
-              ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
-              : ""
-          }`}
-        >
-          <IoBagAddOutline className="w-8 h-8 text-xl font-semibold" />
-          <Link className="text-xl font-semibold" to="/services">
-            Add Service
-          </Link>
-        </li>
+        <Link to="/services">
+          <li
+            className={`flex items-center gap-2 md:gap-4 mt-8  whitespace-nowrap ${
+              isActive("/services")
+                ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
+                : ""
+            }`}
+          >
+            <IoBagAddOutline className="w-5 md:w-8 h-5 md:h-8 text-xl font-semibold" />
+            <p className="text-xl font-semibold">Add Service</p>
+          </li>
+        </Link>
+
         {/* Add Roles */}
-        <li
-          className={`flex items-center gap-4 mt-8 ${
-            isActive("/roles")
-              ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
-              : ""
-          }`}
-        >
-          <IoBagAddOutline className="w-8 h-8 text-xl font-semibold" />
-          <Link className="text-xl font-semibold" to="/roles">
-            Add Role
-          </Link>
-        </li>
+        <Link to="/roles">
+          <li
+            className={`flex items-center gap-2 md:gap-4 mt-8 whitespace-nowrap ${
+              isActive("/roles")
+                ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
+                : ""
+            }`}
+          >
+            <IoBagAddOutline className="w-5 md:w-8 h-5 md:h-8 text-xl font-semibold" />
+            <p className="text-xl font-semibold">Add Role</p>
+          </li>
+        </Link>
         {/* Chat */}
-        <li
-          className={`flex items-center gap-4 mt-8 ${
-            isActive("/chat")
-              ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
-              : ""
-          }`}
-        >
-          <TbBrandWechat className="w-8 h-8 text-xl font-semibold" />
-          <Link className="text-xl font-semibold" to="/chat">
-            Chat
-          </Link>
-        </li>
+        <Link to="/chat">
+          <li
+            className={`flex items-center gap-2 md:gap-4 mt-8 whitespace-nowrap ${
+              isActive("/chat")
+                ? "bg-[#00C0B5] text-white px-5 py-4 rounded-l-4xl"
+                : ""
+            }`}
+          >
+            <TbBrandWechat className="w-5 md:w-8 h-5 md:h-8 text-xl font-semibold" />
+            <p className="text-xl font-semibold">Chat</p>
+          </li>
+        </Link>
 
         {/* Settings */}
-        <li
-          className={`flex justify-between items-center gap-4 mt-8 cursor-pointer py-2 ${
-            isSettingsActive
-              ? "bg-[#00C0B5] text-white pl-5 pr-2 py-4 rounded-l-4xl"
-              : ""
-          }`}
-        >
-          <div className="flex flex-row justify-between items-center gap-2">
-            <IoMdSettings className="w-8 h-8 text-xl font-semibold" />
-            <Link className="text-xl font-semibold" to="/settings">
-              Settings
-            </Link>
-          </div>
-          <SlArrowDown className="w-8 h-5 text-xl font-bold" />
-        </li>
+        <Link to="/settings">
+          <li
+            className={`flex justify-between items-center gap-2 md:gap-4 mt-8 cursor-pointer py-2 whitespace-nowrap ${
+              isSettingsActive
+                ? "bg-[#00C0B5] text-white pl-5 pr-2 py-4 rounded-l-4xl"
+                : ""
+            }`}
+          >
+            <div className="flex flex-row justify-between items-center gap-2">
+              <IoMdSettings className="w-8 h-8 text-xl font-semibold" />
+              <p className="text-xl font-semibold">Settings</p>
+            </div>
+            <SlArrowDown className="w-5  h-5  text-xl font-bold" />
+          </li>
+        </Link>
 
         {/* Settings Submenu */}
         {isSettingsActive && (
           <ul className="text-start py-3 ml-5">
-            <li
-              className={`py-[5px] flex items-center gap-2 ${
-                isActive("/setting/about-us") ? "text-[#00c0b5]" : ""
-              }`}
-            >
-              <IoMdInformationCircleOutline className="w-5 h-5 text-lg font-semibold" />
-              <Link className="text-lg font-semibold" to="/setting/about-us">
-                About Us
-              </Link>
-            </li>
-            <li
-              className={`py-[6px] flex items-center gap-4 ${
-                isActive("/setting/privacy-policy") ? "text-[#00c0b5]" : ""
-              }`}
-            >
-              <MdOutlinePrivacyTip className="w-5 h-5 text-lg font-semibold" />
-              <Link
-                className="text-lg font-semibold"
-                to="/setting/privacy-policy"
+            <Link to="/setting/about-us">
+              <li
+                className={`py-[5px] flex items-center gap-2 ${
+                  isActive("/setting/about-us") ? "text-[#00c0b5]" : ""
+                }`}
               >
-                Privacy Policy
-              </Link>
-            </li>
-            <li
-              className={`py-[6px] flex items-center gap-4 ${
-                isActive("/setting/faq") ? "text-[#00c0b5]" : ""
-              }`}
-            >
-              <GoQuestion className="w-5 h-5 text-lg font-semibold" />
-              <Link className="text-lg font-semibold" to="/setting/faq">
-                FAQ
-              </Link>
-            </li>
-            <li
-              className={`py-[5px] flex gap-2 items-center ${
-                isActive("/setting/terms-and-condition") ? "text-[#00c0b5]" : ""
-              }`}
-            >
-              <FaRegBookmark className="w-5 h-5 text-lg font-semibold" />
-              <Link
-                className="text-lg font-semibold"
-                to="/setting/terms-and-condition"
+                <IoMdInformationCircleOutline className="w-5 h-5 text-lg font-semibold" />
+                <p className="text-lg font-semibold">About Us</p>
+              </li>
+            </Link>
+
+            <Link to="/setting/privacy-policy">
+              <li
+                className={`py-[6px] flex items-center gap-4 ${
+                  isActive("/setting/privacy-policy") ? "text-[#00c0b5]" : ""
+                }`}
               >
-                Terms and Conditions
-              </Link>
-            </li>
+                <MdOutlinePrivacyTip className="w-5 h-5 text-lg font-semibold" />
+                <p className="text-lg font-semibold">Privacy Policy</p>
+              </li>
+            </Link>
+            <Link to="/setting/faq">
+              <li
+                className={`py-[6px] flex items-center gap-4 ${
+                  isActive("/setting/faq") ? "text-[#00c0b5]" : ""
+                }`}
+              >
+                <GoQuestion className="w-5 h-5 text-lg font-semibold" />
+                <p className="text-lg font-semibold">FAQ</p>
+              </li>
+            </Link>
+
+            <Link to="/setting/terms-and-condition">
+              <li
+                className={`py-[5px] flex gap-2 items-center ${
+                  isActive("/setting/terms-and-condition")
+                    ? "text-[#00c0b5]"
+                    : ""
+                }`}
+              >
+                <FaRegBookmark className="w-5 h-5 text-lg font-semibold" />
+                <p className="text-lg font-semibold">Terms and Conditions</p>
+              </li>
+            </Link>
           </ul>
         )}
       </ul>

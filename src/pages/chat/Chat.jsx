@@ -1,32 +1,3 @@
-// <div className="p-5">
-//   <h1 className="text-[#0D0D0D] text-start text-3xl font-bold">
-//     Messages
-//   </h1>
-//   {/* Tab Navigation Section */}
-//   <div className="flex justify-start items-center gap-5 text-md md:text-xl font-semibold my-5">
-//     <p
-//       onClick={() => setActiveTab("User")}
-//       className={`cursor-pointer pb-1 ${
-//         activeTab === "User"
-//           ? "text-[#00C0B5] border-b-4 border-[#00C0B5] font-bold"
-//           : "text-[#575757] font-bold"
-//       }`}
-//     >
-//       Edit Profile
-//     </p>
-//     <p
-//       onClick={() => setActiveTab("Professional")}
-//       className={`cursor-pointer pb-1 ${
-//         activeTab === "Professional"
-//           ? "text-[#00C0B5] border-b-4 border-[#00C0B5] font-bold"
-//           : "text-[#575757] font-bold"
-//       }`}
-//     >
-//       Change Password
-//     </p>
-//   </div>
-// </div>
-
 import { useState } from "react";
 import { AiOutlineSearch, AiOutlinePaperClip } from "react-icons/ai";
 import { RiSendPlane2Fill } from "react-icons/ri";

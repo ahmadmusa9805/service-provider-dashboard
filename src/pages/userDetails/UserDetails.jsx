@@ -151,7 +151,7 @@ function UserDetails() {
 
   return (
     <div>
-      <div className="my-5 md:my-10 md:flex lg:flex flex-col justify-between items-center">
+      <div className="my-5 md:my-10 flex flex-col md:flex-row gap-5 justify-between items-center">
         <div className="flex gap-5">
           <div className="flex items-center gap-[10px]">
             <div
