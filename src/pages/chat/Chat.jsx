@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { AiOutlineSearch, AiOutlinePaperClip } from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
+import { IoImagesOutline } from "react-icons/io5";
 
 const users = [
   {
@@ -210,14 +211,15 @@ const Chat = () => {
               placeholder="Type your message"
               className="flex-1 px-2 py-5 border rounded-full focus:outline-none bg-white placeholder:pl-5"
             />
-            <button className="p-1.5 bg-gray-100 absolute right-28 bottom-7 rounded-full">
-              <AiOutlinePaperClip size={20} className="w-8 h-8" />
+            <button className="p-3 bg-gray-100 absolute right-22 bottom-7 rounded-full">
+              <IoImagesOutline  size={20} className="w-5 h-5"  />
+
             </button>
             <button
               onClick={sendMessage}
-              className="p-2 bg-teal-500 hover:bg-teal-600 text-white absolute right-10 bottom-7 rounded-full"
+              className="p-3.5 bg-teal-500 hover:bg-teal-600 text-white absolute right-8 bottom-7 rounded-full"
             >
-              <RiSendPlane2Fill size={20} className="w-8 h-8" />
+              <RiSendPlane2Fill size={20} className="w-5 h-5" />
             </button>
           </div>
         </div>

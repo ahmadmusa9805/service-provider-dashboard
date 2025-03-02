@@ -14,7 +14,7 @@ function ProfilePage() {
         </h3>
         <div className="mx-auto flex flex-col justify-center items-center">
           {/* Profile Picture Section */}
-          <div className="flex justify-center items-center bg-[#00C0B5] mt-5 text-white w-[900px] mx-auto p-5 gap-5 rounded-md">
+          <div className="flex justify-center items-center bg-[#00C0B5] mt-5 text-white w-[900px] mx-auto p-5 gap-5 rounded-lg">
             <div className="relative">
               <div className="w-[122px] h-[122px] bg-gray-300 rounded-full border-4 border-white shadow-xl flex justify-center items-center">
                 <img
@@ -32,8 +32,8 @@ function ProfilePage() {
               </div>
             </div>
             <div>
-              <p className="text-xl md:text-2xl font-bold">Shah Aman</p>
-              <p className="text-sm font-semibold">Admin</p>
+              <p className="text-xl md:text-3xl font-bold">Shah Aman</p>
+              <p className="text-xl font-semibold">Admin</p>
             </div>
           </div>
 
@@ -44,7 +44,7 @@ function ProfilePage() {
               className={`cursor-pointer pb-1 ${
                 activeTab === "editProfile"
                   ? "text-[#00C0B5] border-b-2 border-[#00C0B5]"
-                  : "text-[#575757]"
+                  : "text-[#6A6D76]"
               }`}
             >
               Edit Profile
@@ -54,7 +54,7 @@ function ProfilePage() {
               className={`cursor-pointer pb-1 ${
                 activeTab === "changePassword"
                   ? "text-[#00C0B5] border-b-2 border-[#00C0B5]"
-                  : "text-[#575757]"
+                  : "text-[#6A6D76]"
               }`}
             >
               Change Password
