@@ -8,8 +8,14 @@ import { MdOutlinePrivacyTip } from "react-icons/md";
 import { GoQuestion } from "react-icons/go";
 import { SlArrowDown } from "react-icons/sl";
 import { TbBrandWechat } from "react-icons/tb";
+// import { increment, decrement } from "../../redux/features/auth/authSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { decrement, increment } from "../../redux/features/auth/authSice";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  // const count = useSelector((state) => state.auth.value); // access state
+  // const dispatch = useDispatch(); // dispatch actions
+
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -180,6 +186,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <span className="text-xl font-semibold">Logout</span>
           </button>
         </Link>
+            {/* <span onClick={() => dispatch(increment())} className="text-xl font-semibold bg-pink-500 px-2 py-1 text-white rounded">increment</span>
+            <span className="text-xl font-semibold bg-pink-500 px-2 py-1 text-white rounded">{count}</span>
+            <span onClick={() => dispatch(decrement())} className="text-xl font-semibold bg-orange-500 px-2 py-1 text-white rounded">deccrement</span> */}
       </div>
     </div>
   );

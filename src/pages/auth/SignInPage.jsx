@@ -1,11 +1,37 @@
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+// import { Link, useNavigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../redux/features/auth/authApi";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../redux/features/auth/authSice";
+import { errorToast, successToast } from "../../helper/validationHelper";
 
 function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  // const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState();
+  const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleLogin = async(event) => {  
+    event.preventDefault();
+    console.log(email, password);
+    try {
+      const res = await login({ email, password }).unwrap();
+      dispatch(setToken(res.token)); // save token to store
+      successToast('Login Success');
+      console.log('Login Success', res);
+      navigate("/");
+
+    } catch (err) {
+      errorToast('Login Failed');
+      console.error('Login Failed:', err);
+    }
+  };
 
   const handleCheckboxChange = (event) => {
     if (event.target.checked) {
@@ -26,7 +52,7 @@ function SignInPage() {
             <p className="text-[#6A6D76] text-center mb-10">
               Please enter your email and password to continue.
             </p>
-            <form className="space-y-5">
+            <form onSubmit={handleLogin} className="space-y-5">
               <div className="w-full">
                 <label className="text-xl text-[#0D0D0D] mb-2 font-bold">
                   Email
@@ -37,6 +63,8 @@ function SignInPage() {
                   placeholder="enter your gmail"
                   className="w-full px-5 py-3 border-2 border-[#6A6D76] rounded-md outline-none mt-5 placeholder:text-xl"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="w-full">
@@ -50,6 +78,8 @@ function SignInPage() {
                     placeholder="**********"
                     className="w-full border-2 border-[#6A6D76] rounded-md outline-none px-5 py-3 mt-5 placeholder:text-xl"
                     required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <button
                     type="button"
@@ -131,11 +161,12 @@ function SignInPage() {
               </div>
               <div className="flex justify-center items-center">
                 <button
-                  onClick={() => navigate("/")}
-                  type="button"
-                  className="w-1/4 bg-[#00C0B5] text-white font-semibold py-2 rounded-lg shadow-lg cursor-pointer mt-5"
+                  // onClick={() => navigate("/")}
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-1/4 bg-[#00C0B5] text-white font-semibold py-2 rounded-lg shadow-lg cursor-pointer mt-5 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  Log In
+                  {isLoading ? "Processing ..." : "Log In"}
                 </button>
               </div>
             </form>
