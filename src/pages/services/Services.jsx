@@ -1,14 +1,75 @@
 /* eslint-disable no-undef */
 import { ConfigProvider, Modal, Table } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdUploadFile } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { useGetServicesQuery, useAddServiceMutation, useDeleteServiceMutation, useUpdateServiceMutation } from "../../redux/features/services/serviceApi"; // Adjust the import path
 
 function Services() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [image, setImage] = useState(null);
+  const [editingService, setEditingService] = useState(null);
+
+  const { data: services, isLoading, isError, error } = useGetServicesQuery(); // Fetch all services
+  const [addService] = useAddServiceMutation();
+  const [deleteService] = useDeleteServiceMutation();
+  const [updateService] = useUpdateServiceMutation();
+    
+  const [task, setTask] = useState("");
+  const [specialists, setSpecialists] = useState("");
+
+
+  useEffect(() => {
+    if (isError) {
+      message.error("Failed to load services: " + error.message);
+    }
+  }, [isError, error]);
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteService(id).unwrap();
+      message.success("Service deleted successfully!");
+    } catch (err) {
+      message.error("Failed to delete service");
+    }
+  };
+
+  const handleEdit = (service) => {
+    setEditingService(service);
+    setTask(service.tasks);
+    setSpecialists(service.specialists.join(", "));
+    setEditModalOpen(true);
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const updatedService = { 
+        id: editingService.id, 
+        tasks: task, 
+        specialists: specialists.split(",").map(s => s.trim()) 
+      };
+      await updateService(updatedService).unwrap();
+      message.success("Service updated successfully!");
+      setEditModalOpen(false);
+    } catch (err) {
+      message.error("Failed to update service");
+    }
+  };
+
+  const handleAddService = async () => {
+    try {
+      const newService = { tasks: task, specialists: specialists.split(",").map(s => s.trim()), image };
+      await addService(newService).unwrap();
+      message.success("Service added successfully!");
+      setAddModalOpen(false);
+    } catch (err) {
+      message.error("Failed to add service");
+    }
+  };
+
   const columns = [
     {
       title: "No",
@@ -52,12 +113,19 @@ function Services() {
       title: "Action",
       key: "action",
       align: "center",
-      render: () => (
+      render: (record) => (
         <div className="flex justify-center gap-2">
-          <button onClick={showModal} className="text-red-500">
+          {/* <button onClick={showModal} className="text-red-500">
+            <RiDeleteBin5Line className="w-6 h-6" />
+          </button> */}
+          <button onClick={() => handleDelete(record.id)} className="text-red-500">
             <RiDeleteBin5Line className="w-6 h-6" />
           </button>
-          <button onClick={showModal3} className="text-[#00C0B5]">
+
+          {/* <button onClick={showModal3} className="text-[#00C0B5]">
+            <BiSolidEdit className="w-6 h-6" />
+          </button> */}
+            <button onClick={() => handleEdit(record)} className="text-[#00C0B5]">
             <BiSolidEdit className="w-6 h-6" />
           </button>
         </div>
@@ -126,12 +194,15 @@ function Services() {
   const showModal = () => {
     setIsModalOpen(true);
   };
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   const showModal2 = () => {
     setAddModalOpen(true);
   };
@@ -150,7 +221,7 @@ function Services() {
   const handleCancel3 = () => {
     setEditModalOpen(false);
   };
-  const [image, setImage] = useState(null);
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -159,12 +230,19 @@ function Services() {
       setImage(imageUrl);
     }
   };
+
   return (
     <div>
       <div className="flex justify-between items-center my-5">
         <h1 className="text-[#0D0D0D] text-2xl font-bold">All Service</h1>
-        <button
+        {/* <button
           onClick={showModal2}
+          className="bg-[#00c0b5] text-white font-semibold px-5 py-2 rounded transition duration-200"
+        >
+          Add Service
+        </button> */}
+           <button
+          onClick={() => setAddModalOpen(true)}
           className="bg-[#00c0b5] text-white font-semibold px-5 py-2 rounded transition duration-200"
         >
           Add Service
@@ -196,9 +274,16 @@ function Services() {
           },
         }}
       >
-        <Table
+        {/* <Table
           dataSource={dataSource}
           columns={columns}
+          pagination={{ pageSize: 5 }}
+          scroll={{ x: "max-content" }}
+        /> */}
+        <Table
+          dataSource={services || []}
+          columns={columns}
+          loading={isLoading}
           pagination={{ pageSize: 5 }}
           scroll={{ x: "max-content" }}
         />

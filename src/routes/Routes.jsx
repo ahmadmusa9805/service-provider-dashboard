@@ -15,11 +15,13 @@ import UserDetails from "../pages/userDetails/UserDetails";
 import Services from "../pages/services/Services";
 import Chat from "../pages/chat/Chat";
 import Roles from "../pages/role/Role";
+import ProtectedRoute from "../layout/ProtectedRoute";
+import PublicRoute from "../layout/PublicRoute";
 
 const router = createBrowserRouter([
   {
     path: "/sign-in",
-    element: <SignInPage />,
+    element:  <PublicRoute><SignInPage /></PublicRoute>,
   },
   {
     path: "/forget-password",
@@ -36,7 +38,7 @@ const router = createBrowserRouter([
 
   {
     path: "/",
-    element: <MainLayout />,
+    element:<ProtectedRoute> <MainLayout /></ProtectedRoute> ,
     children: [
       {
         path: "/",
