@@ -7,6 +7,7 @@ export const authApi = baseApi.injectEndpoints({
         url: '/auth/login', // your login endpoint
         method: 'POST',
         body: credentials,
+        // credentials: 'include',
       }),
     }),
   }),

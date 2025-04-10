@@ -25,6 +25,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   // Check if any settings submenu is active
   const isSettingsActive = currentPath.startsWith("/setting");
 
+
+const handleLogout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = "/sign-in";
+}
+
   return (
     <div
       className={`fixed lg:static bg-white text-[#0D0D0D] w-[70%] sm:w-[70%] md:w-[20%] lg:w-[20%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
@@ -180,12 +187,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
       {/* Logout Button */}
       <div className="absolute mt-5 md:mt-20 lg:mt-20 xl:mt-20 w-full px-4">
-        <Link to="/sign-in">
-          <button className="flex items-center gap-4 w-full py-3 rounded-lg">
+        {/* <Link to="/sign-in"> */}
+          <button onClick={handleLogout} className="flex items-center gap-4 w-full py-3 rounded-lg cursor-pointer">
             <IoLogInOutline className="w-8 h-8 text-xl font-semibold" />
             <span className="text-xl font-semibold">Logout</span>
           </button>
-        </Link>
+        {/* </Link> */}
             {/* <span onClick={() => dispatch(increment())} className="text-xl font-semibold bg-pink-500 px-2 py-1 text-white rounded">increment</span>
             <span className="text-xl font-semibold bg-pink-500 px-2 py-1 text-white rounded">{count}</span>
             <span onClick={() => dispatch(decrement())} className="text-xl font-semibold bg-orange-500 px-2 py-1 text-white rounded">deccrement</span> */}

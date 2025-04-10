@@ -12,5 +12,6 @@ export const baseApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Service'], // <-- ADD THIS IF YOU USE TAGS
   endpoints: () => ({}),
 });
