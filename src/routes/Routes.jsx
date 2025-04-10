@@ -12,11 +12,12 @@ import PrivacyPolicy from "../pages/settings/PrivacyPolicy";
 import TermsCondition from "../pages/settings/TermsCondition";
 import FAQ from "../pages/settings/FAQ";
 import UserDetails from "../pages/userDetails/UserDetails";
-import Services from "../pages/services/Services";
+// import Services from "../pages/services/Services";
 import Chat from "../pages/chat/Chat";
 import Roles from "../pages/role/Role";
 import ProtectedRoute from "../layout/ProtectedRoute";
 import PublicRoute from "../layout/PublicRoute";
+import Services from "../pages/services/Services";
 
 const router = createBrowserRouter([
   {

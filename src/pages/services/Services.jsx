@@ -1,74 +1,39 @@
 /* eslint-disable no-undef */
-import { ConfigProvider, Modal, Table } from "antd";
-import { useState, useEffect } from "react";
+import { ConfigProvider, Modal, Spin, Table } from "antd";
+import { useState } from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdUploadFile } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { useGetServicesQuery, useAddServiceMutation, useDeleteServiceMutation, useUpdateServiceMutation } from "../../redux/features/services/serviceApi"; // Adjust the import path
+import { useGetServicesQuery } from "../../redux/features/services/serviceApi";
+// import { useAddServiceMutation, useGetServicesQuery } from "../../redux/features/services/serviceApi";
 
 function Services() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [image, setImage] = useState(null);
-  const [editingService, setEditingService] = useState(null);
-
   const { data: services, isLoading, isError, error } = useGetServicesQuery(); // Fetch all services
-  const [addService] = useAddServiceMutation();
-  const [deleteService] = useDeleteServiceMutation();
-  const [updateService] = useUpdateServiceMutation();
-    
-  const [task, setTask] = useState("");
-  const [specialists, setSpecialists] = useState("");
+  // const [addService] = useAddServiceMutation(); // Mutation hook for adding services
 
 
-  useEffect(() => {
-    if (isError) {
-      message.error("Failed to load services: " + error.message);
-    }
-  }, [isError, error]);
+ console.log(services, "ahmadmusa");
+ console.log(isLoading, "ahmadmusa");
+ console.log(isError, "isError");
+ console.log(error, "error");
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteService(id).unwrap();
-      message.success("Service deleted successfully!");
-    } catch (err) {
-      message.error("Failed to delete service");
-    }
-  };
 
-  const handleEdit = (service) => {
-    setEditingService(service);
-    setTask(service.tasks);
-    setSpecialists(service.specialists.join(", "));
-    setEditModalOpen(true);
-  };
-
-  const handleUpdate = async () => {
-    try {
-      const updatedService = { 
-        id: editingService.id, 
-        tasks: task, 
-        specialists: specialists.split(",").map(s => s.trim()) 
-      };
-      await updateService(updatedService).unwrap();
-      message.success("Service updated successfully!");
-      setEditModalOpen(false);
-    } catch (err) {
-      message.error("Failed to update service");
-    }
-  };
-
-  const handleAddService = async () => {
-    try {
-      const newService = { tasks: task, specialists: specialists.split(",").map(s => s.trim()), image };
-      await addService(newService).unwrap();
-      message.success("Service added successfully!");
-      setAddModalOpen(false);
-    } catch (err) {
-      message.error("Failed to add service");
-    }
-  };
+ const dataSource = services?.data.map((service, index) => ({
+  key: index,
+  no: Number(index + 1),
+  image: service?.img,
+  tasks: service?.requiredTasks,
+  specialists: service?.showSpecialists
+ }))
+  // useEffect(() => {
+  //   if (isError) {
+  //     message.error("Failed to load services: " + error.message);
+  //   }
+  // }, [isError, error]);
 
   const columns = [
     {
@@ -99,97 +64,90 @@ function Services() {
       title: "Show Specialists In",
       dataIndex: "specialists",
       key: "specialists",
-      render: (specialists) => (
-        <div>
-          {specialists?.map((specialist, index) => (
-            <span key={index} className="mr-1">
-              {specialist}
-            </span>
-          ))}
-        </div>
-      ),
+      // render: (specialists) => (
+      //   <div>
+      //     {specialists?.map((specialist, index) => (
+      //       <span key={index} className="mr-1">
+      //         {specialist}
+      //       </span>
+      //     ))}
+      //   </div>
+      // ),
     },
     {
       title: "Action",
       key: "action",
       align: "center",
-      render: (record) => (
+      render: () => (
         <div className="flex justify-center gap-2">
-          {/* <button onClick={showModal} className="text-red-500">
-            <RiDeleteBin5Line className="w-6 h-6" />
-          </button> */}
-          <button onClick={() => handleDelete(record.id)} className="text-red-500">
+          <button onClick={showModal} className="text-red-500">
             <RiDeleteBin5Line className="w-6 h-6" />
           </button>
-
-          {/* <button onClick={showModal3} className="text-[#00C0B5]">
-            <BiSolidEdit className="w-6 h-6" />
-          </button> */}
-            <button onClick={() => handleEdit(record)} className="text-[#00C0B5]">
+          <button onClick={showModal3} className="text-[#00C0B5]">
             <BiSolidEdit className="w-6 h-6" />
           </button>
         </div>
       ),
     },
   ];
-  const dataSource = [
-    {
-      key: "1",
-      no: "1",
-      image: "https://avatar.iran.liara.run/public/1",
-      tasks: "Verify Email, Complete Profile",
-      specialists: ["Cardiology", "Neurology"],
-    },
-    {
-      key: "2",
-      no: "2",
-      image: "https://avatar.iran.liara.run/public/2",
-      tasks: "Upload Documents",
-      specialists: ["Dermatology", "Pediatrics"],
-    },
-    {
-      key: "3",
-      no: "3",
-      image: "https://avatar.iran.liara.run/public/3",
-      tasks: "Set Appointment",
-      specialists: ["Psychology", "Orthopedics"],
-    },
-    {
-      key: "4",
-      no: "4",
-      image: "https://avatar.iran.liara.run/public/4",
-      tasks: "Confirm Phone Number",
-      specialists: ["General Medicine", "Oncology"],
-    },
-    {
-      key: "8",
-      no: "8",
-      image: "https://avatar.iran.liara.run/public/8",
-      tasks: "Verify Email, Complete Profile",
-      specialists: ["Cardiology", "Neurology"],
-    },
-    {
-      key: "5",
-      no: "5",
-      image: "https://avatar.iran.liara.run/public/5",
-      tasks: "Upload Documents",
-      specialists: ["Dermatology", "Pediatrics"],
-    },
-    {
-      key: "6",
-      no: "6",
-      image: "https://avatar.iran.liara.run/public/6",
-      tasks: "Set Appointment",
-      specialists: ["Psychology", "Orthopedics"],
-    },
-    {
-      key: "7",
-      no: "7",
-      image: "https://avatar.iran.liara.run/public/7",
-      tasks: "Confirm Phone Number",
-      specialists: ["General Medicine", "Oncology"],
-    },
-  ];
+  // const dataSource = [
+  //   {
+  //     key: "1",
+  //     no: "1",
+  //     image: "https://avatar.iran.liara.run/public/1",
+  //     tasks: "Verify Email, Complete Profile",
+  //     specialists: ["Cardiology", "Neurology"],
+  //   },
+  //   {
+  //     key: "2",
+  //     no: "2",
+  //     image: "https://avatar.iran.liara.run/public/2",
+  //     tasks: "Upload Documents",
+  //     specialists: ["Dermatology", "Pediatrics"],
+  //   },
+  //   {
+  //     key: "3",
+  //     no: "3",
+  //     image: "https://avatar.iran.liara.run/public/3",
+  //     tasks: "Set Appointment",
+  //     specialists: ["Psychology", "Orthopedics"],
+  //   },
+  //   {
+  //     key: "4",
+  //     no: "4",
+  //     image: "https://avatar.iran.liara.run/public/4",
+  //     tasks: "Confirm Phone Number",
+  //     specialists: ["General Medicine", "Oncology"],
+  //   },
+  //   {
+  //     key: "8",
+  //     no: "8",
+  //     image: "https://avatar.iran.liara.run/public/8",
+  //     tasks: "Verify Email, Complete Profile",
+  //     specialists: ["Cardiology", "Neurology"],
+  //   },
+  //   {
+  //     key: "5",
+  //     no: "5",
+  //     image: "https://avatar.iran.liara.run/public/5",
+  //     tasks: "Upload Documents",
+  //     specialists: ["Dermatology", "Pediatrics"],
+  //   },
+  //   {
+  //     key: "6",
+  //     no: "6",
+  //     image: "https://avatar.iran.liara.run/public/6",
+  //     tasks: "Set Appointment",
+  //     specialists: ["Psychology", "Orthopedics"],
+  //   },
+  //   {
+  //     key: "7",
+  //     no: "7",
+  //     image: "https://avatar.iran.liara.run/public/7",
+  //     tasks: "Confirm Phone Number",
+  //     specialists: ["General Medicine", "Oncology"],
+  //   },
+  // ];
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -207,6 +165,10 @@ function Services() {
     setAddModalOpen(true);
   };
   const handleOk2 = () => {
+
+
+
+
     setAddModalOpen(false);
   };
   const handleCancel2 = () => {
@@ -235,14 +197,8 @@ function Services() {
     <div>
       <div className="flex justify-between items-center my-5">
         <h1 className="text-[#0D0D0D] text-2xl font-bold">All Service</h1>
-        {/* <button
+        <button
           onClick={showModal2}
-          className="bg-[#00c0b5] text-white font-semibold px-5 py-2 rounded transition duration-200"
-        >
-          Add Service
-        </button> */}
-           <button
-          onClick={() => setAddModalOpen(true)}
           className="bg-[#00c0b5] text-white font-semibold px-5 py-2 rounded transition duration-200"
         >
           Add Service
@@ -274,19 +230,17 @@ function Services() {
           },
         }}
       >
-        {/* <Table
-          dataSource={dataSource}
-          columns={columns}
-          pagination={{ pageSize: 5 }}
-          scroll={{ x: "max-content" }}
-        /> */}
-        <Table
-          dataSource={services || []}
-          columns={columns}
-          loading={isLoading}
-          pagination={{ pageSize: 5 }}
-          scroll={{ x: "max-content" }}
-        />
+       {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Spin size="large" />
+        </div>
+       ) : (
+        <Table 
+        columns={columns}
+        dataSource={dataSource}       
+        pagination={{ pageSize: 5 }}
+        scroll={{ x: "max-content" }} /> 
+       )}
         <Modal
           open={isModalOpen}
           centered
@@ -316,6 +270,10 @@ function Services() {
             </div>
           </div>
         </Modal>
+
+
+
+        {/* add service modal  */}
         <Modal
           open={addModalOpen}
           centered

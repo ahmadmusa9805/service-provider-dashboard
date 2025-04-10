@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-// import { Link, useNavigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
+// import { Link } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 // import { useLoginMutation } from "../../redux/features/auth/authApi";
 import {useLoginMutation} from '../../redux/features/auth/authApi'
 // import { useDispatch } from "react-redux";
@@ -29,6 +30,7 @@ function SignInPage() {
       localStorage.setItem('token', token);
       successToast('Login Success');
       navigate("/");
+      // window.history.pushState({}, '', '/');
     } catch (err) {
       errorToast('Login Failed');
       console.error('Login Failed:', err);
