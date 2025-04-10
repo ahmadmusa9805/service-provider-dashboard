@@ -1,14 +1,40 @@
 /* eslint-disable no-undef */
-import { ConfigProvider, Modal, Table } from "antd";
+import { ConfigProvider, Modal, Spin, Table } from "antd";
 import { useState } from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdUploadFile } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { useGetServicesQuery } from "../../redux/features/services/serviceApi";
+// import { useAddServiceMutation, useGetServicesQuery } from "../../redux/features/services/serviceApi";
 
 function Services() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [image, setImage] = useState(null);
+  const { data: services, isLoading, isError, error } = useGetServicesQuery(); // Fetch all services
+  // const [addService] = useAddServiceMutation(); // Mutation hook for adding services
+
+
+ console.log(services, "ahmadmusa");
+ console.log(isLoading, "ahmadmusa");
+ console.log(isError, "isError");
+ console.log(error, "error");
+
+
+ const dataSource = services?.data.map((service, index) => ({
+  key: index,
+  no: Number(index + 1),
+  image: service?.img,
+  tasks: service?.requiredTasks,
+  specialists: service?.showSpecialists
+ }))
+  // useEffect(() => {
+  //   if (isError) {
+  //     message.error("Failed to load services: " + error.message);
+  //   }
+  // }, [isError, error]);
+
   const columns = [
     {
       title: "No",
@@ -38,15 +64,15 @@ function Services() {
       title: "Show Specialists In",
       dataIndex: "specialists",
       key: "specialists",
-      render: (specialists) => (
-        <div>
-          {specialists?.map((specialist, index) => (
-            <span key={index} className="mr-1">
-              {specialist}
-            </span>
-          ))}
-        </div>
-      ),
+      // render: (specialists) => (
+      //   <div>
+      //     {specialists?.map((specialist, index) => (
+      //       <span key={index} className="mr-1">
+      //         {specialist}
+      //       </span>
+      //     ))}
+      //   </div>
+      // ),
     },
     {
       title: "Action",
@@ -64,78 +90,85 @@ function Services() {
       ),
     },
   ];
-  const dataSource = [
-    {
-      key: "1",
-      no: "1",
-      image: "https://avatar.iran.liara.run/public/1",
-      tasks: "Verify Email, Complete Profile",
-      specialists: ["Cardiology", "Neurology"],
-    },
-    {
-      key: "2",
-      no: "2",
-      image: "https://avatar.iran.liara.run/public/2",
-      tasks: "Upload Documents",
-      specialists: ["Dermatology", "Pediatrics"],
-    },
-    {
-      key: "3",
-      no: "3",
-      image: "https://avatar.iran.liara.run/public/3",
-      tasks: "Set Appointment",
-      specialists: ["Psychology", "Orthopedics"],
-    },
-    {
-      key: "4",
-      no: "4",
-      image: "https://avatar.iran.liara.run/public/4",
-      tasks: "Confirm Phone Number",
-      specialists: ["General Medicine", "Oncology"],
-    },
-    {
-      key: "8",
-      no: "8",
-      image: "https://avatar.iran.liara.run/public/8",
-      tasks: "Verify Email, Complete Profile",
-      specialists: ["Cardiology", "Neurology"],
-    },
-    {
-      key: "5",
-      no: "5",
-      image: "https://avatar.iran.liara.run/public/5",
-      tasks: "Upload Documents",
-      specialists: ["Dermatology", "Pediatrics"],
-    },
-    {
-      key: "6",
-      no: "6",
-      image: "https://avatar.iran.liara.run/public/6",
-      tasks: "Set Appointment",
-      specialists: ["Psychology", "Orthopedics"],
-    },
-    {
-      key: "7",
-      no: "7",
-      image: "https://avatar.iran.liara.run/public/7",
-      tasks: "Confirm Phone Number",
-      specialists: ["General Medicine", "Oncology"],
-    },
-  ];
+  // const dataSource = [
+  //   {
+  //     key: "1",
+  //     no: "1",
+  //     image: "https://avatar.iran.liara.run/public/1",
+  //     tasks: "Verify Email, Complete Profile",
+  //     specialists: ["Cardiology", "Neurology"],
+  //   },
+  //   {
+  //     key: "2",
+  //     no: "2",
+  //     image: "https://avatar.iran.liara.run/public/2",
+  //     tasks: "Upload Documents",
+  //     specialists: ["Dermatology", "Pediatrics"],
+  //   },
+  //   {
+  //     key: "3",
+  //     no: "3",
+  //     image: "https://avatar.iran.liara.run/public/3",
+  //     tasks: "Set Appointment",
+  //     specialists: ["Psychology", "Orthopedics"],
+  //   },
+  //   {
+  //     key: "4",
+  //     no: "4",
+  //     image: "https://avatar.iran.liara.run/public/4",
+  //     tasks: "Confirm Phone Number",
+  //     specialists: ["General Medicine", "Oncology"],
+  //   },
+  //   {
+  //     key: "8",
+  //     no: "8",
+  //     image: "https://avatar.iran.liara.run/public/8",
+  //     tasks: "Verify Email, Complete Profile",
+  //     specialists: ["Cardiology", "Neurology"],
+  //   },
+  //   {
+  //     key: "5",
+  //     no: "5",
+  //     image: "https://avatar.iran.liara.run/public/5",
+  //     tasks: "Upload Documents",
+  //     specialists: ["Dermatology", "Pediatrics"],
+  //   },
+  //   {
+  //     key: "6",
+  //     no: "6",
+  //     image: "https://avatar.iran.liara.run/public/6",
+  //     tasks: "Set Appointment",
+  //     specialists: ["Psychology", "Orthopedics"],
+  //   },
+  //   {
+  //     key: "7",
+  //     no: "7",
+  //     image: "https://avatar.iran.liara.run/public/7",
+  //     tasks: "Confirm Phone Number",
+  //     specialists: ["General Medicine", "Oncology"],
+  //   },
+  // ];
 
   const showModal = () => {
     setIsModalOpen(true);
   };
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   const showModal2 = () => {
     setAddModalOpen(true);
   };
   const handleOk2 = () => {
+
+
+
+
     setAddModalOpen(false);
   };
   const handleCancel2 = () => {
@@ -150,7 +183,7 @@ function Services() {
   const handleCancel3 = () => {
     setEditModalOpen(false);
   };
-  const [image, setImage] = useState(null);
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -159,6 +192,7 @@ function Services() {
       setImage(imageUrl);
     }
   };
+
   return (
     <div>
       <div className="flex justify-between items-center my-5">
@@ -196,12 +230,17 @@ function Services() {
           },
         }}
       >
-        <Table
-          dataSource={dataSource}
-          columns={columns}
-          pagination={{ pageSize: 5 }}
-          scroll={{ x: "max-content" }}
-        />
+       {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Spin size="large" />
+        </div>
+       ) : (
+        <Table 
+        columns={columns}
+        dataSource={dataSource}       
+        pagination={{ pageSize: 5 }}
+        scroll={{ x: "max-content" }} /> 
+       )}
         <Modal
           open={isModalOpen}
           centered
@@ -231,6 +270,10 @@ function Services() {
             </div>
           </div>
         </Modal>
+
+
+
+        {/* add service modal  */}
         <Modal
           open={addModalOpen}
           centered

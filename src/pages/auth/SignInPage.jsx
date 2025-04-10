@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-// import { Link, useNavigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../../redux/features/auth/authApi";
-import { useDispatch } from "react-redux";
-import { setToken } from "../../redux/features/auth/authSice";
+// import { Link } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useLoginMutation } from "../../redux/features/auth/authApi";
+import {useLoginMutation} from '../../redux/features/auth/authApi'
+// import { useDispatch } from "react-redux";
+// import { setToken, setUser } from "../../redux/features/auth/authSice";
 import { errorToast, successToast } from "../../helper/validationHelper";
+// import { verifyToken } from "../../utils/verifyToken";
 
 function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,19 +17,20 @@ function SignInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState();
   const [login, { isLoading }] = useLoginMutation();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async(event) => {  
     event.preventDefault();
     console.log(email, password);
+    // login({ email, password })
     try {
       const res = await login({ email, password }).unwrap();
-      dispatch(setToken(res.token)); // save token to store
+      const token = res?.data?.accessToken
+      localStorage.setItem('token', token);
       successToast('Login Success');
-      console.log('Login Success', res);
       navigate("/");
-
+      // window.history.pushState({}, '', '/');
     } catch (err) {
       errorToast('Login Failed');
       console.error('Login Failed:', err);

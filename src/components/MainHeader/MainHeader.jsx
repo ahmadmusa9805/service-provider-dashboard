@@ -1,8 +1,14 @@
+// import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { verifyToken } from "../../utils/verifyToken";
 
 /* eslint-disable react/prop-types */
 const MainHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
+  // const user = useSelector((state) => state.auth.user);
+
+  const token = localStorage.getItem('token');
+  const user = verifyToken(token)
 
   return (
     <div className="relative w-full">
@@ -28,7 +34,7 @@ const MainHeader = ({ toggleSidebar }) => {
                 alt="User Avatar"
               />
               <h3 className="hidden md:block text-white text-lg font-semibold">
-                Mr. Admin
+                {user?.role}
               </h3>
             </div>
             <button
